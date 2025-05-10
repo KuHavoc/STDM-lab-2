@@ -11,8 +11,8 @@ class Node {
 }
 
 export class LinkedList implements List {
-    private head: Node | null = null;
-    private tail: Node | null = null;
+    head: Node | null = null;
+    tail: Node | null = null;
     private size: number = 0;
 
     length(): number {
