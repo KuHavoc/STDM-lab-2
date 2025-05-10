@@ -10,7 +10,7 @@ class Node {
     }
 }
 
-export class LinkedList {
+export class LinkedList implements List {
     private head: Node | null = null;
     private tail: Node | null = null;
     private size: number = 0;
@@ -111,7 +111,7 @@ export class LinkedList {
         return current.value;
     }
 
-    clone(): LinkedList {
+    clone(): List {
         const newList = new LinkedList();
         let current = this.head;
         while (current) {
@@ -133,6 +133,41 @@ export class LinkedList {
         if (temp) {
             this.tail = this.head;
             this.head = temp.prev;
+        }
+    }
+
+    findFirst(element: Character): number {
+        let current = this.head;
+        let idx = 0;
+        while (current) {
+            if (current.value === element) return idx;
+            current = current.next;
+            idx++;
+        }
+        return -1;
+    }
+
+    findLast(element: Character): number {
+        let current = this.tail;
+        let idx = this.size - 1;
+        while (current) {
+            if (current.value === element) return idx;
+            current = current.prev;
+            idx--;
+        }
+        return -1;
+    }
+
+    clear(): void {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    extend(elements: List): void {
+        const other = elements.clone();
+        for (let i = 0; i < other.length(); i++) {
+            this.append(other.get(i));
         }
     }
 }
