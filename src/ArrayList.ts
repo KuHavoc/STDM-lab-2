@@ -38,7 +38,7 @@ export class ArrayList implements List {
 
     clone(): List {
         const newList = new ArrayList();
-        //newList.items = [...this.items];
+        newList.items = [...this.items];
         return newList;
     }
 
