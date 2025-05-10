@@ -86,4 +86,53 @@ export class LinkedList {
         }
         return toDelete.value;
     }
+
+    deleteAll(element: Character): void {
+        let current = this.head;
+        while (current) {
+            const nextNode = current.next;
+            if (current.value === element) {
+                if (current.prev) current.prev.next = current.next;
+                else this.head = current.next;
+                if (current.next) current.next.prev = current.prev;
+                else this.tail = current.prev;
+                this.size--;
+            }
+            current = nextNode;
+        }
+    }
+
+    get(index: number): Character {
+        if (index < 0 || index >= this.size) {
+            throw new RangeError('Index out of bounds');
+        }
+        let current = this.head!;
+        for (let i = 0; i < index; i++) current = current.next!;
+        return current.value;
+    }
+
+    clone(): LinkedList {
+        const newList = new LinkedList();
+        let current = this.head;
+        while (current) {
+            newList.append(current.value);
+            current = current.next;
+        }
+        return newList;
+    }
+
+    reverse(): void {
+        let current = this.head;
+        let temp: Node | null = null;
+        while (current) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+        if (temp) {
+            this.tail = this.head;
+            this.head = temp.prev;
+        }
+    }
 }
