@@ -1,4 +1,4 @@
-import { Character, List } from "./types";
+import { Character, List } from './types';
 
 export class ArrayList implements List {
     private items: Character[] = [];
@@ -13,14 +13,14 @@ export class ArrayList implements List {
 
     insert(element: Character, index: number): void {
         if (index < 0 || index > this.items.length) {
-            throw new RangeError("Index out of bounds");
+            throw new RangeError('Index out of bounds');
         }
         this.items.splice(index, 0, element);
     }
 
     delete(index: number): Character {
         if (index < 0 || index >= this.items.length) {
-            throw new RangeError("Index out of bounds");
+            throw new RangeError('Index out of bounds');
         }
         return this.items.splice(index, 1)[0];
     }
@@ -31,7 +31,7 @@ export class ArrayList implements List {
 
     get(index: number): Character {
         if (index < 0 || index >= this.items.length) {
-            throw new RangeError("Index out of bounds");
+            throw new RangeError('Index out of bounds');
         }
         return this.items[index];
     }
